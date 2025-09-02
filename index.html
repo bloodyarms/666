@@ -1,26 +1,59 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Быстрый вход на уроки</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
       padding: 20px;
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {
+      background: #fdfdfd;
+      color: #222;
+    }
+    body.dark {
+      background: #1e1e1e;
+      color: #ddd;
     }
     .day-block {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
     .day-block h2 {
       margin-bottom: 10px;
+      font-size: 18px;
     }
     .schedule {
-      font-size: 18px;
+      font-size: 14px;
       margin-bottom: 10px;
+      line-height: 1.4;
     }
     button {
-      padding: 8px 16px;
-      font-size: 16px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      margin-right: 5px;
+      background: #4a90e2;
+      color: white;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #357abd;
+    }
+    .theme-toggle {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      padding: 8px 14px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #666;
+      color: white;
       cursor: pointer;
     }
   </style>
@@ -57,7 +90,25 @@
     <button onclick="openFridayLinks()">Открыть все уроки</button>
   </div>
 
+  <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
+
   <script>
+    // Темы
+    function applyTheme(theme) {
+      document.body.classList.remove("light", "dark");
+      document.body.classList.add(theme);
+      localStorage.setItem("theme", theme);
+    }
+
+    function toggleTheme() {
+      const current = document.body.classList.contains("dark") ? "dark" : "light";
+      applyTheme(current === "dark" ? "light" : "dark");
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+
+    // Уроки
     function openMondayLinks() {
       const links = [
         'https://meet.google.com/szy-vmdy-hpx',
@@ -66,9 +117,9 @@
         'https://meet.google.com/szy-vmdy-hpx',
         'https://meet.google.com/tws-yxap-xzb',
         'https://meet.google.com/zkb-ejoe-szj',
-	    'https://meet.google.com/syh-bvvm-ykq'
+        'https://meet.google.com/syh-bvvm-ykq'
       ];
-      links.forEach(link => window.open(link, '_blank')); #ПОНЕДЕЛЬНИКГОТОВ
+      links.forEach(link => window.open(link, '_blank'));
     }
 
     function openTuesdayLinks() {
@@ -80,7 +131,7 @@
         'https://meet.google.com/dqz-yjaj-fjg',
         'https://meet.google.com/bjz-gkxx-ghz'
       ];
-      links.forEach(link => window.open(link, '_blank'));  #ВТОРНИКГОТОВ
+      links.forEach(link => window.open(link, '_blank'));
     }
 
     function openWednesdayLinks() {
@@ -91,9 +142,9 @@
         'https://meet.google.com/onz-rvuf-pwc',
         'https://meet.google.com/gzv-maxh-nzu',
         'https://meet.google.com/oyw-neib-mwc',
-		'https://meet.google.com/tws-yxap-xzb'
+        'https://meet.google.com/tws-yxap-xzb'
       ];
-      links.forEach(link => window.open(link, '_blank')); #СРЕДАГОТОВА
+      links.forEach(link => window.open(link, '_blank'));
     }
 
     function openThursdayLinks() {
@@ -104,9 +155,9 @@
         'https://meet.google.com/szy-vmdy-hpx',
         'https://meet.google.com/oyw-neib-mwc',
         'https://meet.google.com/sdw-wrip-asw',
-		'https://meet.google.com/onz-rvuf-pwc'
+        'https://meet.google.com/onz-rvuf-pwc'
       ];
-      links.forEach(link => window.open(link, '_blank')); #ЧЕТВЕРГГОТОВ
+      links.forEach(link => window.open(link, '_blank'));
     }
 
     function openFridayLinks() {
@@ -116,10 +167,10 @@
         'https://meet.google.com/wza-ycrc-vdi',
         'https://meet.google.com/bjz-gkxx-ghz',
         'https://meet.google.com/hfb-qege-orb',
-		'https://meet.google.com/tiz-kfmq-irn',
-		'https://meet.google.com/pdy-spdw-air'
+        'https://meet.google.com/tiz-kfmq-irn',
+        'https://meet.google.com/pdy-spdw-air'
       ];
-      links.forEach(link => window.open(link, '_blank')); #ПЯТНИЦАГОТОВА
+      links.forEach(link => window.open(link, '_blank'));
     }
   </script>
 
